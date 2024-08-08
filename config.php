@@ -4,10 +4,10 @@ $username = "root";
 $password = "";
 $database = "myproj";
 
-// Create a connection
+// connecting to database
 $conn = mysqli_connect($server, $username, $password, $database);
 
-// Check connection
+// agar connection nahi hai to terminate
 if (!$conn) {
     die("<script>alert('Connection Failed.')</script>");
 }

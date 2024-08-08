@@ -1,5 +1,7 @@
 <?php
 include 'config.php';
+// connecting to database
+
 session_start();
 ?>
 
@@ -16,7 +18,7 @@ session_start();
 
 </head>
    <h1 class="logintitle">Shopsey Login Page</h1>
-    <di class="container">
+    <div class="container">
         <div class="image-side">
             <img src="image/hs.jpg" alt="">
         </div>
@@ -37,11 +39,20 @@ session_start();
         </div>
     </div>
     <form action="" method="post">
-        <a href="">Don't Have an account</a>
-        <button type="submit" name="signin">Sign In</button>
+        <p>
+            Don't Have an account
+        </p>
+        <button type="submit" name="signin" style="padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;">Sign In</button>
     </form>
 
-
+        <!-- handling request -->
+         
             <?php
             if (isset($_POST['signin'])) {
                 header("Location: signup.php");
@@ -71,17 +82,31 @@ session_start();
                               exit();
                     }
                      else {
-                        echo "<script>
+
+                        $newquery = "SELECT * FROM LOGIN WHERE username ='$username'";
+                        $newr = mysqli_query($conn,$newquery);
+                        // if username exist but password is incorrect
+                        if($newr->num_rows > 0)
+                        {
+                            echo "<script>
                                 swal({
-                                    title: 'Username or password incorrect',
+                                    title: 'Incorrect Password',
                                     icon: 'error',});
                               </script>";
-                              
+                        }
+                        else
+                        {
+
+                            echo "<script>
+                            swal({
+                                title: 'Username Does Not Exists',
+                                icon: 'error',});
+                                </script>";
+                                }
                     }
 
                 }
             }
-            
             ?>
 
 </body>

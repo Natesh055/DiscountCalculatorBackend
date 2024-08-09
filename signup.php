@@ -2,9 +2,8 @@
 include 'config.php';
 session_start();
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -21,9 +20,6 @@ error_reporting(E_ALL);
 <body>
     <h1 class="logintitle">Shopsey</h1>
     <div class="container">
-        <div class="image-side">
-            <img src="image/hs.jpg" alt="">
-        </div>
         <div class="login-side">
             <form method="post" action="">
                 <h2>Signup</h2>
@@ -71,8 +67,7 @@ error_reporting(E_ALL);
                                 icon: 'error',
                             });
                             </script>";
-                            header("Location: signup.php");
-                            exit();
+                           
                         } else {
                             $sql = "INSERT INTO login (username, email, password) VALUES ('$username', '$email', '$password')";
                             $result = mysqli_query($conn, $sql);
@@ -81,14 +76,17 @@ error_reporting(E_ALL);
                                 swal({
                                     title: 'Registration Successful',
                                     icon: 'success',
+                                }).then(function() {
+                                    window.location.href = 'login.php';
                                 });
                                 </script>";
+                                
                                 $_SESSION['username'] = $username;
-                                $username ="";
+                                // Clear variables after setting session
+                                $username = "";
                                 $email = "";
-                                $password="";
-                                $cpassword="";
-                                header("Location: login.php");
+                                $password = "";
+                                $cpassword = "";
                                 exit();
                             } else {
                                 echo "<script>
@@ -106,4 +104,5 @@ error_reporting(E_ALL);
         </div>
     </div>
 </body>
+
 </html>

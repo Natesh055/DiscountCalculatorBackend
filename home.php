@@ -37,12 +37,21 @@ $today_date = date("Y-m-d");
     <title>Add Items - Shopsey</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS/home.css">
+    <link rel="stylesheet" href="CSS/logout.css">
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
+
+<div class="logout-container">
+    <form action="" method="post">
+        <button type="submit" name="logout">Logout</button>
+    </form>
+</div>
     <div class="container mt-5">
+
         <h1>Add Items for Today's Shopping</h1>
         <form method="post">
             <div class="form-group">
@@ -64,6 +73,12 @@ $today_date = date("Y-m-d");
             <button type="submit" class="btn btn-primary" name="add">Add</button>
         </form>
             <?php
+
+if (isset($_POST['logout'])) {
+    session_destroy();
+    header("Location: login.php");
+    exit();
+}
                 if (isset($_POST['add'])) {
                     $itemname = mysqli_real_escape_string($conn, $_POST['itemname']);
                     $qty = (int)$_POST['qty'];
@@ -98,9 +113,9 @@ $today_date = date("Y-m-d");
                 echo '<tr>';
                 echo '<td>' . htmlspecialchars($row['itemname']) . '</td>';
                 echo '<td>' . htmlspecialchars($row['quantity']) . '</td>';
-                echo '<td>$' . number_format($original_price, 2) . '</td>';
-                echo '<td>$' . number_format($discounted_price, 2) . '</td>';
-                echo '<td>$' . number_format($price_difference, 2) . '</td>';
+                echo '<td>INR ' . number_format($original_price, 2) . '</td>';
+                echo '<td>INR ' . number_format($discounted_price, 2) . '</td>';
+                echo '<td>INR ' . number_format($price_difference, 2) . '</td>';
                 echo '<td>' . number_format($percentage_discount, 2) . '%</td>';
                 echo '</tr>';
             }

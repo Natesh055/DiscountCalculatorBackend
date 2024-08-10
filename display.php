@@ -44,7 +44,7 @@ $tsum = 0; // Total original price
 $dsum = 0; // Total discounted price
 $savings=0;
 
-if ($result && mysqli_num_rows($result) > 0) {
+if ($result && $result->num_rows > 0) {
     echo '<table>';
     echo '<thead>';
     echo '<tr>';

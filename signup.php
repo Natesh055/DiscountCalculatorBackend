@@ -1,9 +1,7 @@
 <?php
 include 'config.php';
+// connecting to the database my project
 session_start();
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -12,9 +10,10 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup page</title>
+    <!-- linking bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS/signup.css">
-    <!-- Include SweetAlert library -->
+    <!-- Error achha dene ke liye sweet alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
@@ -53,7 +52,7 @@ session_start();
                     } elseif ($password != $cpassword) {
                         echo "<script>
                         swal({
-                            title: 'Passwords do not match',
+                            title: 'Passwords Does not match',
                             icon: 'error',
                         });
                         </script>";
@@ -72,6 +71,7 @@ session_start();
                             $sql = "INSERT INTO login (username, email, password) VALUES ('$username', '$email', '$password')";
                             $result = mysqli_query($conn, $sql);
                             if ($result) {
+                                // it is used to take the user to signup page
                                 echo "<script>
                                 swal({
                                     title: 'Registration Successful',
@@ -80,18 +80,11 @@ session_start();
                                     window.location.href = 'login.php';
                                 });
                                 </script>";
-                                
-                                $_SESSION['username'] = $username;
-                                // Clear variables after setting session
-                                $username = "";
-                                $email = "";
-                                $password = "";
-                                $cpassword = "";
                                 exit();
                             } else {
                                 echo "<script>
                                 swal({
-                                    title: 'Registration Failed',
+                                    title: 'Registration Failed please try again later',
                                     icon: 'error',
                                 });
                                 </script>";

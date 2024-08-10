@@ -11,22 +11,6 @@ if (!isset($_SESSION['username'])) {
 $username = $_SESSION['username'];
 $today_date = date("Y-m-d");
 
-// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//     if (isset($_POST['add'])) {
-//         $itemname = mysqli_real_escape_string($conn, $_POST['itemname']);
-//         $qty = (int)$_POST['qty'];
-//         $orprice = (float)$_POST['orprice'];
-//         $tprice = (float)$_POST['tprice'];
-
-//         $sql = "INSERT INTO ITEMS (itemname, quantity, original_price, discounted_price, date_added, username) 
-//                 VALUES ('$itemname', $qty, $orprice, $tprice, '$today_date', '$username')";
-//         if (mysqli_query($conn, $sql)) {
-//             echo '<div class="alert alert-success">Item added successfully.</div>';
-//         } else {
-//             echo '<div class="alert alert-danger">Error: ' . mysqli_error($conn) . '</div>';
-//         }
-//     }
-// }
 ?>
 
 <!DOCTYPE html>

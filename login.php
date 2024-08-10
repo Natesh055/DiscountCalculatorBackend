@@ -1,7 +1,6 @@
 <?php
 include 'config.php';
 // connecting to database
-
 session_start();
 ?>
 
@@ -19,9 +18,7 @@ session_start();
 </head>
    <h1 class="logintitle">Shopsey Login Page</h1>
     <div class="container">
-        <div class="image-side">
-            <img src="image/hs.jpg" alt="">
-        </div>
+        
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="login-side p-4 border rounded shadow">
             <h2 class="text-center mb-4">Sign In</h2>

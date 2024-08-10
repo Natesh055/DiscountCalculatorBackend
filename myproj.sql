@@ -27,7 +27,7 @@ CREATE TABLE `items` (
   `original_price` FLOAT,
   `discounted_price` FLOAT,
   `date_added` DATE NOT NULL,
-  PRIMARY KEY (`username`, `itemname`)
+  PRIMARY KEY (`username`,`itemname`,`date_added`, `quantity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Insert an item with today's date into the 'items' table

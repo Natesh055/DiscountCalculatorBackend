@@ -73,27 +73,44 @@ $today_date = date("Y-m-d");
             <button type="submit" class="btn btn-primary" name="add">Add</button>
         </form>
             <?php
-
-if (isset($_POST['logout'])) {
-    session_destroy();
-    header("Location: login.php");
-    exit();
-}
+                if (isset($_POST['logout'])) {
+                    session_destroy();
+                    header("Location: login.php");
+                    exit();
+                }
                 if (isset($_POST['add'])) {
-                    $itemname = mysqli_real_escape_string($conn, $_POST['itemname']);
+                    $itemname = $_POST['itemname'];
                     $qty = (int)$_POST['qty'];
                     $orprice = (float)$_POST['orprice'];
                     $tprice = (float)$_POST['tprice'];
-
+                    if($orprice <= $tprice || empty($qty) || empty($orprice) ||empty($tprice))
+                    {
+                        echo "<script>
+                        swal({
+                            title: 'Enter Correct Details',
+                            icon: 'error',
+                        });
+                        </script>";
+    
+                }
+                else
+                {
+                    
                     $sql = "INSERT INTO ITEMS (itemname, quantity, original_price, discounted_price, date_added, username) 
                             VALUES ('$itemname', $qty, $orprice, $tprice, '$today_date', '$username')";
+                              $itemname = "";
+                              $qty = "";
+                              $orprice = "";
+                              $tprice = "";
                     if (mysqli_query($conn, $sql)) {
                         echo '<div class="alert alert-success">Item added successfully.</div>';
                     } else {
                         echo '<div class="alert alert-danger">Error: ' . mysqli_error($conn) . '</div>';
                     }
                 }
+                }
             ?>
+            
         <?php
         $sql = "SELECT * FROM ITEMS WHERE date_added = '$today_date' AND username = '$username'";
         $result = mysqli_query($conn, $sql);
@@ -140,6 +157,7 @@ if(isset($_POST['vlist']))
 {
     $_SESSION['username'] = $username;
     header("Location: display.php");
+    exit();
 }
 ?>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

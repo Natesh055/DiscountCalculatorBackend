@@ -38,7 +38,7 @@ if (isset($_POST['logout'])) {
 
 $a = $_SESSION['username'];
 
-$sql = "SELECT DISTINCT(date_added) FROM items WHERE username = '$username'";
+$sql = "SELECT DISTINCT(date_added) FROM items WHERE username = '$username' ORDER BY date_added";
 $result = mysqli_query($conn, $sql);
 
 if ($result && $result->num_rows > 0) {

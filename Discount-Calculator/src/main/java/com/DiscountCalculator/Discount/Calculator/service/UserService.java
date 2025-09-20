@@ -5,6 +5,8 @@ import com.DiscountCalculator.Discount.Calculator.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
     @Autowired
@@ -15,8 +17,16 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-    public User createUser(User user)
+    public void createUser(User user)
     {
-        return userRepository.save(user);
+        userRepository.save(user);
+    }
+    public List<User> getAllUsers()
+    {
+        return userRepository.findAll();
+    }
+    public void deleteUserByEmail(String email)
+    {
+        userRepository.deleteById(email);
     }
 }
